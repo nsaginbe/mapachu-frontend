@@ -1,38 +1,187 @@
+:root {
+  --bg:        #F5F5F5;
+  --primary:   #3B4CCA;
+  --secondary: #FFDE00;
+  --accent:    #FF0000;
+  --text:      #2A2A2A; 
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  font-family: 'Arial', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: var(--primary);
+  padding: 15px;
+  color: var(--text);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  text-shadow: none;
+}
+
+.start-button {
+  background-color: var(--secondary);
+  border: none;
+  color: var(--text);
+  padding: 12px 28px;
+  font-size: 1.125rem;
+  margin: 20px 0;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.start-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.start-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.timer {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 15px 0;
+  color: var(--accent);
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 5px 15px;
+  border-radius: 20px;
+}
+
+.game-dashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--secondary);
+  color: var(--text);
+}
+
+.inventory {
+  display: flex;
+  gap: 15px;
+}
+
+.pokeball {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 5px 10px;
+  border-radius: 15px;
+}
+
+.pokeball-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.pokeball-normal {
+  background: linear-gradient(to bottom, var(--primary) 50%, white 50%);
+  border: 2px solid var(--text);
+}
+
+.pokeball-great {
+  background: linear-gradient(to bottom, var(--secondary) 50%, white 50%);
+  border: 2px solid var(--text);
+}
+
+.pokeball-ultra {
+  background: linear-gradient(to bottom, var(--text) 50%, var(--accent) 50%);
+  border: 2px solid var(--text);
+}
+
+.map-container {
+  margin: 20px auto;
+  max-width: 1000px;
+  border: 3px solid var(--secondary);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: calc(100vh - 180px);
+  position: relative;
+}
+
+.leaflet-popup-content {
+  margin: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.pokemon-found {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  text-align: center;
+  animation: bounceIn 0.5s;
+}
+
+@keyframes bounceIn {
+  0%   { transform: translate(-50%, -50%) scale(0.3); opacity: 0; }
+  50%  { transform: translate(-50%, -50%) scale(1.05); opacity: 0.9; }
+  70%  { transform: translate(-50%, -50%) scale(0.9); }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.pokemon-found h2 {
+  color: var(--primary);
+  margin-top: 0;
+}
+
+.pokeball-options {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.pokeball-button {
+  background-color: white;
+  border: 2px solid var(--secondary);
+  color: var(--text);
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.pokeball-button:hover:not(:disabled) {
+  background-color: var(--secondary);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.pokeball-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.score {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: var(--accent);
 }
